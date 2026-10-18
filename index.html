@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>Aikah — Search and Prosper</title>
+    <meta
+      name="description"
+      content="Aikah is a self-sufficient cosmic material. Zero-point energy, no seams, no batteries. Sourced from Eridani 69T. We shape the material. You make it yours."
+    />
+    <meta name="author" content="Aidam Kahtar" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aikah — Search and Prosper" />
+    <meta
+      property="og:description"
+      content="A self-sufficient cosmic material powered by zero-point energy. No seams. No batteries."
+    />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/aikah.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a0a0a'/%3E%3Ccircle cx='16' cy='16' r='6' fill='none' stroke='%238fe3ff' stroke-width='1.4'/%3E%3Cpath d='M6 16h20' stroke='%238fe3ff' stroke-width='1' opacity='.5'/%3E%3C/svg%3E"
+    />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Aikah",
+        "founder": { "@type": "Person", "name": "Aidam Kahtar" },
+        "foundingLocation": "Eridani 69T",
+        "description": "A self-sufficient cosmic material powered by zero-point energy."
+      }
+    </script>
+  </head>
+
+  <body class="bg-obsidian text-white antialiased">
+    <!-- ====================================================================
+         PRELOADER
+         ==================================================================== -->
+    <div id="preloader" role="status" aria-live="polite" aria-label="Loading Aikah">
+      <div class="flex flex-col items-center gap-6">
+        <span class="font-mono text-[0.6875rem] uppercase tracking-widest3 text-zinc-400">
+          Aikah
+        </span>
+        <div class="preloader__bar">
+          <div class="preloader__fill" id="preloader-fill"></div>
+        </div>
+        <span class="font-mono text-[0.625rem] tracking-widest2 text-mist" id="preloader-pct">
+          000
+        </span>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         ATMOSPHERE OVERLAYS
+         ==================================================================== -->
+    <div class="grain" aria-hidden="true"></div>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <!-- ====================================================================
+         CUSTOM CURSOR
+         ==================================================================== -->
+    <div class="cursor" id="cursor" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <span class="cursor-label" id="cursor-label" aria-hidden="true"></span>
+
+    <a
+      href="#manifesto"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[300] focus:rounded-full focus:bg-white focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-black"
+    >
+      Skip to content
+    </a>
+
+    <!-- ====================================================================
+         HEADER
+         ==================================================================== -->
+    <header
+      id="site-header"
+      class="fixed inset-x-0 top-0 z-[100]"
+    >
+      <div class="shell flex items-center justify-between py-5 md:py-6">
+        <a
+          href="#top"
+          class="brand-mark font-display text-lg tracking-[0.24em] uppercase text-white md:text-xl"
+          data-cursor="Top"
+        >
+          Aikah
+        </a>
+
+        <nav class="flex items-center gap-6 md:gap-9" aria-label="Primary">
+          <span
+            class="hidden font-mono text-[0.625rem] uppercase tracking-widest2 text-mist lg:inline"
+          >
+            Eridani 69T
+          </span>
+          <a href="#manifesto" class="nav-link" data-cursor="Read">About</a>
+          <a
+            href="#contact"
+            class="nav-link hidden sm:inline"
+            data-cursor="Write"
+          >
+            Contact
+          </a>
+        </nav>
+      </div>
+      <div class="hairline opacity-60"></div>
+    </header>
+
+    <main id="top">
+      <!-- ==================================================================
+           HERO
+           ================================================================== -->
+      <section
+        id="hero"
+        class="relative flex min-h-[100svh] flex-col overflow-hidden"
+      >
+        <!-- starfield -->
+        <canvas id="starfield" aria-hidden="true"></canvas>
+
+        <!-- horizon glow -->
+        <div
+          class="pointer-events-none absolute left-1/2 top-[58%] h-[60vh] w-[130vw] -translate-x-1/2 rounded-[50%]"
+          style="
+            background: radial-gradient(
+              ellipse at 50% 50%,
+              rgba(143, 227, 255, 0.09),
+              rgba(143, 227, 255, 0.03) 38%,
+              transparent 68%
+            );
+            filter: blur(40px);
+          "
+          aria-hidden="true"
+        ></div>
+
+        <!-- planet graphic -->
+        <div
+          class="pointer-events-none absolute left-1/2 top-1/2 z-[1] -translate-x-1/2 -translate-y-1/2"
+          data-parallax="0.14"
+          data-parallax-max="90"
+          aria-hidden="true"
+        >
+          <div class="hero-graphic" data-mouse-parallax="20">
+            <div class="hero-graphic__halo"></div>
+
+            <div class="orbit orbit--1"><i class="orbit__node"></i></div>
+            <div class="orbit orbit--2"><i class="orbit__node"></i></div>
+            <div class="orbit orbit--3"></div>
+
+            <div class="hero-graphic__planet">
+              <div class="hero-graphic__grid">
+                <svg viewBox="0 0 200 200" fill="none" aria-hidden="true">
+                  <g stroke="rgba(143,227,255,0.30)" stroke-width="0.5">
+                    <ellipse cx="100" cy="100" rx="99" ry="18" />
+                    <ellipse cx="100" cy="100" rx="99" ry="38" />
+                    <ellipse cx="100" cy="100" rx="99" ry="58" />
+                    <ellipse cx="100" cy="100" rx="99" ry="78" />
+                    <ellipse cx="100" cy="100" rx="99" ry="94" />
+                    <ellipse cx="100" cy="100" rx="18" ry="99" />
+                    <ellipse cx="100" cy="100" rx="38" ry="99" />
+                    <ellipse cx="100" cy="100" rx="58" ry="99" />
+                    <ellipse cx="100" cy="100" rx="78" ry="99" />
+                    <ellipse cx="100" cy="100" rx="94" ry="99" />
+                  </g>
+                </svg>
+              </div>
+              <div class="hero-graphic__terminator"></div>
+              <div class="hero-graphic__limb"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- headline scrim -->
+        <div
+          class="pointer-events-none absolute left-1/2 top-1/2 z-[2] h-[46rem] w-[46rem] max-w-[130vw] -translate-x-1/2 -translate-y-1/2"
+          style="
+            background: radial-gradient(
+              closest-side,
+              rgba(5, 5, 5, 0.72),
+              rgba(5, 5, 5, 0.34) 50%,
+              transparent 76%
+            );
+          "
+          aria-hidden="true"
+        ></div>
+
+        <!-- hero content -->
+        <div class="hero-copy shell relative z-10 my-auto flex flex-col items-center justify-center pt-32 pb-10 md:pt-36">
+          <div class="flex flex-col items-center text-center">
+            <div data-reveal="fade" style="--delay: 120ms">
+              <span class="badge">
+                <span class="badge__dot"></span>
+                Connected to planet Earth
+              </span>
+            </div>
+
+            <h1
+              class="display-xl mt-8 max-w-[15ch] font-display font-medium text-white md:mt-10"
+              data-split
+              data-reveal="fade"
+              style="--delay: 260ms"
+            >
+              Hi Human, search and prosper
+            </h1>
+
+            <p
+              class="lede mt-7 max-w-[46ch] text-balance"
+              data-reveal
+              style="--delay: 900ms"
+            >
+              A self-sufficient cosmic material grown from zero-point energy. No seams.
+              No batteries. Nothing to recharge — only something to become.
+            </p>
+
+            <div
+              class="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:gap-4"
+              data-reveal
+              style="--delay: 1040ms"
+            >
+              <a href="#projects" class="btn btn--solid" data-cursor="View">
+                Explore the material
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path d="M1 13 13 1M13 1H4.5M13 1v8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+              <a href="#manifesto" class="btn btn--ghost" data-cursor="Read">
+                Read the manifesto
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- hero meta + scroll indicator -->
+        <div class="shell relative z-10 mt-auto">
+          <div class="hairline"></div>
+          <div class="flex items-end justify-between gap-6 py-6">
+            <div class="hidden gap-10 md:flex" data-reveal="fade" style="--delay: 1200ms">
+              <div>
+                <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                  Origin
+                </p>
+                <p class="mt-1 font-mono text-[0.6875rem] tracking-widest2 text-zinc-300">
+                  ERIDANI 69T
+                </p>
+              </div>
+              <div>
+                <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                  Signal
+                </p>
+                <p class="mt-1 font-mono text-[0.6875rem] tracking-widest2 text-zinc-300">
+                  STABLE
+                </p>
+              </div>
+              <div>
+                <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                  Charge
+                </p>
+                <p class="mt-1 font-mono text-[0.6875rem] tracking-widest2 text-zinc-300">
+                  ∞ / SELF
+                </p>
+              </div>
+            </div>
+
+            <a
+              href="#manifesto"
+              class="group flex items-center gap-4 md:ml-auto"
+              data-cursor="Scroll"
+              data-reveal="fade"
+              style="--delay: 1260ms"
+            >
+              <span class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                Scroll
+              </span>
+              <span class="scroll-hint__line"></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           MARQUEE STRIP
+           ================================================================== -->
+      <div class="marquee-wrap relative overflow-hidden border-y border-zinc-800 py-5">
+        <div class="marquee" aria-hidden="true">
+          <span class="marquee__item">Zero-Point Energy</span>
+          <span class="marquee__item">·</span>
+          <span class="marquee__item">Seamless Weave</span>
+          <span class="marquee__item">·</span>
+          <span class="marquee__item">Battery Free</span>
+          <span class="marquee__item">·</span>
+          <span class="marquee__item">Eridani 69T</span>
+          <span class="marquee__item">·</span>
+          <span class="marquee__item">Self-Sufficient</span>
+          <span class="marquee__item">·</span>
+          <span class="marquee__item">Zero-Point Energy</span>
+          <span class="marquee__item">·</span>
+          <span class="marquee__item">Seamless Weave</span>
+          <span class="marquee__item">·</span>
+          <span class="marquee__item">Battery Free</span>
+          <span class="marquee__item">·</span>
+          <span class="marquee__item">Eridani 69T</span>
+          <span class="marquee__item">·</span>
+          <span class="marquee__item">Self-Sufficient</span>
+          <span class="marquee__item">·</span>
+        </div>
+      </div>
+
+      <!-- ==================================================================
+           MANIFESTO
+           ================================================================== -->
+      <section id="manifesto" class="section">
+        <div class="shell">
+          <div class="grid gap-14 lg:grid-cols-12 lg:gap-10">
+            <!-- left: founder + origin -->
+            <div class="lg:col-span-5">
+              <p class="eyebrow" data-reveal="fade">Manifesto — 01</p>
+
+              <div class="mt-9 panel panel--glow group" data-tilt-card data-reveal="scale">
+                <div class="relative aspect-[4/5] overflow-hidden bg-obsidian">
+                  <img
+                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80"
+                    alt="Portrait of Aidam Kahtar, founder of Aikah"
+                    loading="lazy"
+                    decoding="async"
+                    class="h-full w-full object-cover opacity-70 grayscale transition-all duration-[1200ms] ease-cinematic group-hover:scale-[1.04] group-hover:opacity-90 group-hover:grayscale-0"
+                  />
+                  <div
+                    class="pointer-events-none absolute inset-0"
+                    style="background: linear-gradient(180deg, transparent 35%, rgba(5,5,5,0.9) 100%)"
+                  ></div>
+
+                  <div class="absolute inset-x-0 bottom-0 p-6">
+                    <p class="font-display text-xl tracking-tight text-white">
+                      Aidam Kahtar
+                    </p>
+                    <p class="mt-1 font-mono text-[0.625rem] uppercase tracking-widest2 text-zinc-400">
+                      Founder / Father
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="mt-8 flex items-baseline justify-between gap-6 border-t border-zinc-800 pt-6"
+                data-reveal
+                style="--delay: 140ms"
+              >
+                <div>
+                  <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Planetary Origin
+                  </p>
+                  <p class="mt-2 font-display text-2xl tracking-tight text-white">
+                    Eridani 69T
+                  </p>
+                </div>
+                <div class="text-right">
+                  <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Distance
+                  </p>
+                  <p class="mt-2 font-mono text-sm tracking-widest2 text-zinc-300">
+                    10.5 ly
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- right: philosophy -->
+            <div class="lg:col-span-7 lg:pl-10">
+              <h2
+                class="display-lg max-w-[18ch] font-display font-medium"
+                data-split
+                data-reveal="fade"
+              >
+                A material that answers only to itself.
+              </h2>
+
+              <div class="mt-10 space-y-6 lg:max-w-[58ch]">
+                <p class="lede" data-reveal style="--delay: 80ms">
+                  Aikah is not manufactured. It is grown — coaxed out of the vacuum at
+                  Eridani 69T, where the material learns the shape it is meant to hold.
+                  What arrives on Earth is already whole.
+                </p>
+                <p class="lede" data-reveal style="--delay: 160ms">
+                  It draws from zero-point energy, the quiet static beneath all matter.
+                  That means no cables, no cells, no charging rituals. The material is
+                  self-sufficient by nature, and it stays that way for as long as it
+                  exists.
+                </p>
+                <p class="lede" data-reveal style="--delay: 240ms">
+                  There are no seams because there is nothing to join. Aikah is poured as
+                  a single continuous body, then cooled in the dark until its surface
+                  forgets every tool that touched it.
+                </p>
+              </div>
+
+              <!-- principle list -->
+              <ul class="mt-12 grid gap-px overflow-hidden border border-zinc-800 sm:grid-cols-3">
+                <li class="bg-graphite p-6" data-reveal style="--delay: 120ms">
+                  <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Principle
+                  </p>
+                  <p class="mt-3 font-display text-lg text-white">No Seams</p>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-400">
+                    One continuous body. Nothing joined, nothing to fail.
+                  </p>
+                </li>
+                <li class="bg-graphite p-6" data-reveal style="--delay: 200ms">
+                  <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Principle
+                  </p>
+                  <p class="mt-3 font-display text-lg text-white">No Batteries</p>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-400">
+                    Zero-point draw. It never asks to be recharged.
+                  </p>
+                </li>
+                <li class="bg-graphite p-6" data-reveal style="--delay: 280ms">
+                  <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Principle
+                  </p>
+                  <p class="mt-3 font-display text-lg text-white">No Owner</p>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-400">
+                    We shape it. The meaning is yours to assign.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PROCESS 01 — 04
+           ================================================================== -->
+      <section id="process" class="section border-t border-zinc-800">
+        <div class="shell">
+          <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="eyebrow" data-reveal="fade">Lifecycle — 02</p>
+              <h2
+                class="display-lg mt-7 max-w-[16ch] font-display font-medium"
+                data-split
+                data-reveal="fade"
+              >
+                Four movements of the material
+              </h2>
+            </div>
+            <p class="lede max-w-[38ch] md:text-right" data-reveal style="--delay: 120ms">
+              From the vacuum of Eridani 69T to the moment it is returned. Every stage is
+              slow, deliberate, and free of waste.
+            </p>
+          </div>
+
+          <div class="mt-16 grid gap-px overflow-hidden border border-zinc-800 sm:grid-cols-2 xl:grid-cols-4">
+            <article class="step bg-graphite" data-reveal data-cursor="01">
+              <span class="step__num">01</span>
+              <h3 class="font-display text-2xl tracking-tight text-white">Origin</h3>
+              <p class="text-sm leading-relaxed text-zinc-400">
+                Harvested from the upper dust bands of Eridani 69T, where raw Aikah drifts
+                in slow, luminous sheets.
+              </p>
+              <span class="mt-auto pt-6 font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                Vacuum → Sheet
+              </span>
+            </article>
+
+            <article class="step bg-graphite" data-reveal style="--delay: 90ms" data-cursor="02">
+              <span class="step__num">02</span>
+              <h3 class="font-display text-2xl tracking-tight text-white">
+                Transformation
+              </h3>
+              <p class="text-sm leading-relaxed text-zinc-400">
+                Poured as a single continuous body in a weightless foundry. No joints, no
+                welds, no seams anywhere.
+              </p>
+              <span class="mt-auto pt-6 font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                Sheet → Body
+              </span>
+            </article>
+
+            <article class="step bg-graphite" data-reveal style="--delay: 180ms" data-cursor="03">
+              <span class="step__num">03</span>
+              <h3 class="font-display text-2xl tracking-tight text-white">Energy</h3>
+              <p class="text-sm leading-relaxed text-zinc-400">
+                Zero-point lattice wakes and holds. The object begins drawing its own
+                power, indefinitely, without a cell.
+              </p>
+              <span class="mt-auto pt-6 font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                Body → Light
+              </span>
+            </article>
+
+            <article class="step bg-graphite" data-reveal style="--delay: 270ms" data-cursor="04">
+              <span class="step__num">04</span>
+              <h3 class="font-display text-2xl tracking-tight text-white">Recycling</h3>
+              <p class="text-sm leading-relaxed text-zinc-400">
+                Returned to the band it came from. Aikah dissolves cleanly and the cycle
+                begins again, unchanged.
+              </p>
+              <span class="mt-auto pt-6 font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                Light → Vacuum
+              </span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           PROJECTS
+           ================================================================== -->
+      <section id="projects" class="section border-t border-zinc-800">
+        <div class="shell">
+          <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="eyebrow" data-reveal="fade">Selected Works — 03</p>
+              <h2
+                class="display-lg mt-7 max-w-[14ch] font-display font-medium"
+                data-split
+                data-reveal="fade"
+              >
+                Objects grown, not built
+              </h2>
+            </div>
+            <a
+              href="#deliveries"
+              class="btn btn--ghost self-start md:self-auto"
+              data-cursor="Archive"
+              data-reveal
+              style="--delay: 120ms"
+            >
+              Full archive
+            </a>
+          </div>
+
+          <div class="mt-16 grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+            <!-- 01 -->
+            <a href="#projects" class="project group" data-cursor="Open" data-reveal="scale">
+              <div class="project__media">
+                <span class="project__index">01 / 04</span>
+                <img
+                  class="project__img"
+                  src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?auto=format&fit=crop&w=900&q=80"
+                  alt="Gradient Chair — a seamless Aikah seat glowing softly in darkness"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project__body">
+                <div>
+                  <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Seating
+                  </p>
+                  <h3 class="mt-2 font-display text-xl tracking-tight text-white">
+                    Gradient Chair
+                  </h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-400">
+                    A single pour that shifts from matte obsidian to pale light along its
+                    own curve.
+                  </p>
+                </div>
+                <span class="project__arrow" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 13 13 1M13 1H4.5M13 1v8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- 02 -->
+            <a
+              href="#projects"
+              class="project group"
+              data-cursor="Open"
+              data-reveal="scale"
+              style="--delay: 90ms"
+            >
+              <div class="project__media">
+                <span class="project__index">02 / 04</span>
+                <img
+                  class="project__img"
+                  src="https://images.unsplash.com/photo-1543722530-d2c3201371e7?auto=format&fit=crop&w=900&q=80"
+                  alt="Glow Causeway — an illuminated Aikah path cutting through the dark"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project__body">
+                <div>
+                  <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Infrastructure
+                  </p>
+                  <h3 class="mt-2 font-display text-xl tracking-tight text-white">
+                    Glow Causeway
+                  </h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-400">
+                    A self-lit transit ribbon laid across a dead sea. It has never needed
+                    maintenance.
+                  </p>
+                </div>
+                <span class="project__arrow" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 13 13 1M13 1H4.5M13 1v8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- 03 -->
+            <a
+              href="#projects"
+              class="project group"
+              data-cursor="Open"
+              data-reveal="scale"
+              style="--delay: 180ms"
+            >
+              <div class="project__media">
+                <span class="project__index">03 / 04</span>
+                <img
+                  class="project__img"
+                  src="https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?auto=format&fit=crop&w=900&q=80"
+                  alt="Breath Column — a tall Aikah pillar exhaling visible light"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project__body">
+                <div>
+                  <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Atmosphere
+                  </p>
+                  <h3 class="mt-2 font-display text-xl tracking-tight text-white">
+                    Breath Column
+                  </h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-400">
+                    A vertical column that exhales clean air, drawing everything it needs
+                    from the vacuum.
+                  </p>
+                </div>
+                <span class="project__arrow" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 13 13 1M13 1H4.5M13 1v8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </a>
+
+            <!-- 04 -->
+            <a
+              href="#projects"
+              class="project group"
+              data-cursor="Open"
+              data-reveal="scale"
+              style="--delay: 270ms"
+            >
+              <div class="project__media">
+                <span class="project__index">04 / 04</span>
+                <img
+                  class="project__img"
+                  src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=900&q=80"
+                  alt="Slow Pod — a compact Aikah dwelling resting in darkness"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="project__body">
+                <div>
+                  <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Dwelling
+                  </p>
+                  <h3 class="mt-2 font-display text-xl tracking-tight text-white">
+                    Slow Pod
+                  </h3>
+                  <p class="mt-2 text-sm leading-relaxed text-zinc-400">
+                    A habitation grown in one piece. Warm, quiet, and entirely off any
+                    grid ever made.
+                  </p>
+                </div>
+                <span class="project__arrow" aria-hidden="true">
+                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
+                    <path d="M1 13 13 1M13 1H4.5M13 1v8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           DELIVERIES / TIMELINE
+           ================================================================== -->
+      <section id="deliveries" class="section border-t border-zinc-800">
+        <div class="shell">
+          <div class="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p class="eyebrow" data-reveal="fade">Deliveries — 04</p>
+              <h2
+                class="display-lg mt-7 max-w-[18ch] font-display font-medium"
+                data-split
+                data-reveal="fade"
+              >
+                Twelve thousand years of shipping
+              </h2>
+            </div>
+            <p class="lede max-w-[36ch] md:text-right" data-reveal style="--delay: 120ms">
+              A partial ledger. The earliest entries were carved, not logged — we have
+              done our best to keep them in order.
+            </p>
+          </div>
+
+          <div class="mt-14">
+            <div
+              class="hidden grid-cols-[12rem_1.15fr_1fr] gap-6 border-b border-zinc-800 pb-4 md:grid"
+              data-reveal="fade"
+            >
+              <span class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                Epoch
+              </span>
+              <span class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                Client / Location
+              </span>
+              <span class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                Artifact
+              </span>
+            </div>
+
+            <ul class="list-none">
+              <li class="delivery group" data-reveal data-cursor="Log">
+                <span class="delivery__epoch">12,400 yrs ago</span>
+                <span>
+                  <span class="block font-display text-lg tracking-tight text-white">
+                    House of Varel
+                  </span>
+                  <span class="block text-sm text-zinc-400">Kepler-442b, Northern Shelf</span>
+                </span>
+                <span class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-zinc-300">The Long Table</span>
+                  <svg class="shrink-0 text-zinc-500 transition-all duration-500 ease-cinematic group-hover:translate-x-1 group-hover:text-accent" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </li>
+
+              <li class="delivery group" data-reveal data-cursor="Log">
+                <span class="delivery__epoch">9,870 yrs ago</span>
+                <span>
+                  <span class="block font-display text-lg tracking-tight text-white">
+                    Sol Collective
+                  </span>
+                  <span class="block text-sm text-zinc-400">Mare Serenitatis, Luna</span>
+                </span>
+                <span class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-zinc-300">Halo Bench</span>
+                  <svg class="shrink-0 text-zinc-500 transition-all duration-500 ease-cinematic group-hover:translate-x-1 group-hover:text-accent" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </li>
+
+              <li class="delivery group" data-reveal data-cursor="Log">
+                <span class="delivery__epoch">6,150 yrs ago</span>
+                <span>
+                  <span class="block font-display text-lg tracking-tight text-white">
+                    Terran Archive
+                  </span>
+                  <span class="block text-sm text-zinc-400">Atacama Deep Vault</span>
+                </span>
+                <span class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-zinc-300">Breath Column I</span>
+                  <svg class="shrink-0 text-zinc-500 transition-all duration-500 ease-cinematic group-hover:translate-x-1 group-hover:text-accent" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </li>
+
+              <li class="delivery group" data-reveal data-cursor="Log">
+                <span class="delivery__epoch">4,320 yrs ago</span>
+                <span>
+                  <span class="block font-display text-lg tracking-tight text-white">
+                    Anahita Guild
+                  </span>
+                  <span class="block text-sm text-zinc-400">Eridani 69T, Upper Band</span>
+                </span>
+                <span class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-zinc-300">Mother Cargo</span>
+                  <svg class="shrink-0 text-zinc-500 transition-all duration-500 ease-cinematic group-hover:translate-x-1 group-hover:text-accent" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </li>
+
+              <li class="delivery group" data-reveal data-cursor="Log">
+                <span class="delivery__epoch">2,900 yrs ago</span>
+                <span>
+                  <span class="block font-display text-lg tracking-tight text-white">
+                    Lumen Order
+                  </span>
+                  <span class="block text-sm text-zinc-400">Titan Shelf, Kraken Reach</span>
+                </span>
+                <span class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-zinc-300">Glow Causeway</span>
+                  <svg class="shrink-0 text-zinc-500 transition-all duration-500 ease-cinematic group-hover:translate-x-1 group-hover:text-accent" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </li>
+
+              <li class="delivery group" data-reveal data-cursor="Log">
+                <span class="delivery__epoch">1,040 yrs ago</span>
+                <span>
+                  <span class="block font-display text-lg tracking-tight text-white">
+                    New Kyoto Works
+                  </span>
+                  <span class="block text-sm text-zinc-400">L5 Foundry, High Orbit</span>
+                </span>
+                <span class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-zinc-300">Slow Pod</span>
+                  <svg class="shrink-0 text-zinc-500 transition-all duration-500 ease-cinematic group-hover:translate-x-1 group-hover:text-accent" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </li>
+
+              <li class="delivery group" data-reveal data-cursor="Log">
+                <span class="delivery__epoch">318 yrs ago</span>
+                <span>
+                  <span class="block font-display text-lg tracking-tight text-white">
+                    Aikah Atelier
+                  </span>
+                  <span class="block text-sm text-zinc-400">Earth, Low Orbit</span>
+                </span>
+                <span class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-zinc-300">Gradient Chair</span>
+                  <svg class="shrink-0 text-zinc-500 transition-all duration-500 ease-cinematic group-hover:translate-x-1 group-hover:text-accent" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </li>
+
+              <li class="delivery group" data-reveal data-cursor="Yours">
+                <span class="delivery__epoch text-accent">Present day</span>
+                <span>
+                  <span class="block font-display text-lg tracking-tight text-white">
+                    Open Commission
+                  </span>
+                  <span class="block text-sm text-zinc-400">Your orbit, wherever it is</span>
+                </span>
+                <span class="flex items-center justify-between gap-4">
+                  <span class="text-sm text-zinc-300">Yours</span>
+                  <svg class="shrink-0 text-zinc-500 transition-all duration-500 ease-cinematic group-hover:translate-x-1 group-hover:text-accent" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                    <path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================================================================
+           AWARDS
+           ================================================================== -->
+      <section id="awards" class="section border-t border-zinc-800">
+        <div class="shell">
+          <p class="eyebrow" data-reveal="fade">Recognition — 05</p>
+
+          <div
+            class="award panel panel--glow mt-10 grid gap-10 p-8 md:p-12 lg:grid-cols-12 lg:gap-14 lg:p-16"
+            data-tilt-card
+            data-reveal="scale"
+          >
+            <span class="award__sheen" aria-hidden="true"></span>
+
+            <div class="lg:col-span-4">
+              <div class="award__medal">
+                <div class="relative flex flex-col items-center gap-1.5">
+                  <span class="font-display text-4xl leading-none text-white/90" aria-hidden="true">
+                    ✦
+                  </span>
+                  <span class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-zinc-400">
+                    Prize
+                  </span>
+                </div>
+              </div>
+              <p class="mt-6 font-mono text-[0.625rem] uppercase tracking-widest2 text-mist">
+                Intergalactic Prize — Cycle 4,320
+              </p>
+            </div>
+
+            <div class="lg:col-span-8">
+              <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-accent">
+                Material of the Age
+              </p>
+              <h2 class="display-lg mt-5 max-w-[14ch] font-display font-medium" data-split>
+                Mother Cargo
+              </h2>
+              <p class="lede mt-7 max-w-[54ch]">
+                The largest single Aikah body ever poured: a drifting archive vessel with
+                no engine, no crew quarters, and no power plant. It carries twelve
+                thousand years of records and has never once needed to be refuelled.
+              </p>
+              <p class="lede mt-5 max-w-[54ch]">
+                The jury called it “the first object that behaves like a star.” We simply
+                call it finished.
+              </p>
+
+              <dl class="mt-10 grid grid-cols-2 gap-px overflow-hidden border border-zinc-800 sm:grid-cols-4">
+                <div class="bg-graphite p-5">
+                  <dt class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Mass
+                  </dt>
+                  <dd class="mt-2 font-display text-lg text-white">2.4 Mt</dd>
+                </div>
+                <div class="bg-graphite p-5">
+                  <dt class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Draw
+                  </dt>
+                  <dd class="mt-2 font-display text-lg text-white">Zero-point</dd>
+                </div>
+                <div class="bg-graphite p-5">
+                  <dt class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Seams
+                  </dt>
+                  <dd class="mt-2 font-display text-lg text-white">None</dd>
+                </div>
+                <div class="bg-graphite p-5">
+                  <dt class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+                    Uptime
+                  </dt>
+                  <dd class="mt-2 font-display text-lg text-white">4,320 yrs</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ==================================================================
+         FOOTER / CTA
+         ================================================================== -->
+    <footer id="contact" class="relative overflow-hidden border-t border-zinc-800">
+      <!-- atmospheric shipping visual -->
+      <div class="absolute inset-0" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1454789548928-9efd52dc4031?auto=format&fit=crop&w=2000&q=80"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full scale-[1.14] object-cover opacity-35 grayscale"
+          data-parallax="0.06"
+          data-parallax-max="52"
+        />
+        <div
+          class="absolute inset-0"
+          style="
+            background: linear-gradient(
+                180deg,
+                rgba(5, 5, 5, 0.92) 0%,
+                rgba(5, 5, 5, 0.78) 45%,
+                rgba(5, 5, 5, 0.97) 100%
+              );
+          "
+        ></div>
+      </div>
+
+      <div class="shell relative z-10">
+        <div class="py-24 md:py-32 lg:py-40">
+          <p class="eyebrow" data-reveal="fade">Open Commission</p>
+
+          <h2
+            class="display-lg mt-8 max-w-[20ch] font-display font-medium"
+            data-split
+            data-reveal="fade"
+          >
+            We shape the material. You make it yours.
+          </h2>
+
+          <div class="mt-12 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a
+              href="mailto:hello@aikah.space?subject=Open%20Commission"
+              class="btn btn--solid"
+              data-cursor="Write"
+              data-reveal
+            >
+              Start a commission
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 13 13 1M13 1H4.5M13 1v8.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a
+              href="https://github.com/jasonwai0416/18-10-2026"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--ghost"
+              data-cursor="GitHub"
+              data-reveal
+              style="--delay: 90ms"
+            >
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+              </svg>
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="hairline"></div>
+
+        <div class="grid gap-10 py-12 md:grid-cols-4 md:gap-8">
+          <div class="md:col-span-2">
+            <p class="font-display text-xl uppercase tracking-[0.24em] text-white">Aikah</p>
+            <p class="mt-4 max-w-[38ch] text-sm leading-relaxed text-zinc-400">
+              A self-sufficient cosmic material. Grown at Eridani 69T, finished in the
+              dark, delivered wherever someone is ready for it.
+            </p>
+          </div>
+
+          <nav aria-label="Sections">
+            <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+              Sections
+            </p>
+            <ul class="mt-5 space-y-1 text-sm">
+              <li><a class="foot-link inline-block py-1.5" href="#manifesto">Manifesto</a></li>
+              <li><a class="foot-link inline-block py-1.5" href="#process">Lifecycle</a></li>
+              <li><a class="foot-link inline-block py-1.5" href="#projects">Selected works</a></li>
+              <li><a class="foot-link inline-block py-1.5" href="#deliveries">Deliveries</a></li>
+              <li><a class="foot-link inline-block py-1.5" href="#awards">Recognition</a></li>
+            </ul>
+          </nav>
+
+          <nav aria-label="Elsewhere">
+            <p class="font-mono text-[0.5625rem] uppercase tracking-widest2 text-mist">
+              Elsewhere
+            </p>
+            <ul class="mt-5 space-y-1 text-sm">
+              <li>
+                <a class="foot-link inline-block py-1.5" href="mailto:hello@aikah.space">hello@aikah.space</a>
+              </li>
+              <li>
+                <a
+                  class="foot-link inline-block py-1.5"
+                  href="https://github.com/jasonwai0416/18-10-2026"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >GitHub</a
+                >
+              </li>
+              <li><a class="foot-link inline-block py-1.5" href="#top">Back to top</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div
+          class="flex flex-col gap-3 border-t border-zinc-800 py-8 font-mono text-[0.625rem] uppercase tracking-widest2 text-mist sm:flex-row sm:items-center sm:justify-between"
+        >
+          <span>© <span id="year">2026</span> Aikah — Eridani 69T</span>
+          <span>Search and prosper</span>
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"
+      defer
+    ></script>
+    <script src="./assets/js/aikah.js" defer></script>
+  </body>
+</html>
